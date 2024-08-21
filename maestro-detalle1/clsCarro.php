@@ -6,6 +6,11 @@
 	   private $prec= array();
 	   private $dim;
 	 
+	   public function __construct()
+	   {
+			$this->dim = 0;
+	   }
+
 	   public function Carrito()
 	   {
 	      $this->dim = 0;
@@ -26,15 +31,15 @@
 		}
 		public function getProducto($pos)
 		{
-			return $this->prod[$pos]; 
+			if ($pos >= 0) return $this->prod[$pos]; 	
 		}
 		public function getCantidad($pos)
 		{
-			return $this->cant[$pos];
+			if ($pos >= 0) return $this->cant[$pos];
 		}
 		public function getPrecio($pos)
 		{
-			return $this->prec[$pos];
+			if ($pos >= 0) return $this->prec[$pos];
 		}
 		public function Insertar($elem,$cantidad,$precio)
 		{
@@ -59,4 +64,4 @@
 			}
 		}
 }						  
-?>			
+?>

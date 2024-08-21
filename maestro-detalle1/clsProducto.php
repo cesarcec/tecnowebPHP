@@ -6,55 +6,61 @@ class Producto extends Conexion
 	private $id_producto;
 	private $descripcion;
 	private $precio;
+	//private $cantidad;
 	private $id_categoria;
 
 	//construtor
-	public function Producto()
-	{   parent::Conexion();
+	public function Producto(){   parent::Conexion();
 		$this->id_producto=0;
 		$this->descripcion="";
 		$this->precio=0;
+		//$this->cantidad=0;
 		$this->id_categoria=0;
 	}
-	//propiedades de acceso
-	public function setIdProducto($valor)
-	{
+
+	//propiedades de acceso ID
+	public function setIdProducto($valor){
 		$this->id_producto=$valor;
 	}
-	public function getIdProducto()
-	{
+	public function getIdProducto(){
 		return $this->id_producto;
 	}
 
-	public function setDescripcion($valor)
-	{
+	//propiedades de acceso descripcion
+	public function setDescripcion($valor){
 		$this->descripcion=$valor;
 	}
-	public function getDescripcion()
-	{
+	public function getDescripcion(){
 		return $this->descripcion;
 	}
 
-	public function setPrecio($valor)
-	{
+	//propiedades de acceso precio
+	public function setPrecio($valor){
 		$this->precio=$valor;
 	}
-	public function getPrecio()
-	{
+	public function getPrecio(){
 		return $this->precio;
 	}
 
-	public function setIdCategoria($valor)
-	{
+	//propiedades de acceso precio
+	public function setCatidad($valor){
+		//$this->cantidad=$valor;
+	}
+	public function getCantidad(){
+		//return $this->cantidad;
+	}
+
+	//propiedades de acceso categoria
+	public function setIdCategoria($valor){
 		$this->id_categoria=$valor;
 	}
-	public function getIdCategoria()
-	{
+	public function getIdCategoria(){
 		return $this->id_categoria;
 	}
 
-	public function guardar()
-	{
+
+	//METODOS
+	public function guardar(){
         $sql="insert into producto(descripcion,precio,id_categoria) values('$this->descripcion',$this->precio,$this->id_categoria)";		
 		if(parent::ejecutar($sql))
 			return true;
@@ -79,23 +85,20 @@ class Producto extends Conexion
 			return false;	
 	}
 	
-	public function buscarPorDescripcion($criterio)
-	{
+	public function buscarPorDescripcion($criterio){
 	    //No se esta tomando en cuenta el decremento del stock de la tabla producto
 		$sql="select id_producto, descripcion, precio, nombre from producto, categoria 
 		 where producto.id_categoria=categoria.id_categoria and descripcion like '$criterio%'";
 		return parent::ejecutar($sql);
 	}										
 
-	public function buscarPorCategoria($criterio)
-	{
+	public function buscarPorCategoria($criterio){
 		$sql="select id_producto, descripcion, precio, nombre from producto, categoria 
 		 where producto.id_categoria=categoria.id_categoria and nombre like '$criterio%'";
 		return parent::ejecutar($sql);
 	}
 
-	public function buscarPorCategoriaNombre($criterio1,$criterio2)
-	{
+	public function buscarPorCategoriaNombre($criterio1,$criterio2){
 		$sql="select id_producto, descripcion, precio, nombre from producto, categoria 
 		 where producto.id_categoria=categoria.id_categoria and (nombre like '$criterio1%' and descripcion 
 		 like '$criterio2%')";
@@ -118,5 +121,4 @@ class Producto extends Conexion
 		 where producto.id_producto='$criterio' and producto.id_categoria=categoria.id_categoria";
 		return parent::ejecutar($sql);
 	}
-}    
-?>
+}

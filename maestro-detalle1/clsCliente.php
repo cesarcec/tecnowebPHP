@@ -20,7 +20,8 @@ class Cliente extends Conexion
 		$this->telefono="";
 		$this->direccion="";
 	}
-	//propiedades de acceso
+
+	//propiedades de acceso al ID
 	public function setIdCliente($valor)
 	{
 		$this->id_cliente=$valor;
@@ -30,6 +31,7 @@ class Cliente extends Conexion
 		return $this->id_cliente;
 	}
 
+	//propiedades de acceso al nombre
 	public function setNombre($valor)
 	{
 		$this->nombre=$valor;
@@ -39,6 +41,7 @@ class Cliente extends Conexion
 		return $this->nombre;
 	}
 
+	//propiedades de acceso al apellido
 	public function setApellidos($valor)
 	{
 		$this->apellidos=$valor;
@@ -48,6 +51,7 @@ class Cliente extends Conexion
 		return $this->apellidos;
 	}
 
+	//propiedades de acceso a la empresa
 	public function setEmpresa($valor)
 	{
 		$this->empresa=$valor;
@@ -57,6 +61,7 @@ class Cliente extends Conexion
 		return $this->empresa;
 	}
 
+	//propiedades de acceso al Telefono
 	public function setTelefono($valor)
 	{
 		$this->telefono=$valor;
@@ -66,6 +71,7 @@ class Cliente extends Conexion
 		return $this->telefono;
 	}
 
+	//propiedades de acceso a la direccion
 	public function setDireccion($valor)
 	{
 		$this->direccion=$valor;
@@ -75,6 +81,7 @@ class Cliente extends Conexion
 		return $this->direccion;
 	}
 
+	//METODOS
 	public function ultimo_codigo()	{
 	  $s="select max(id_cliente) as maximo from cliente";	  
 	  $reg = parent::ejecutar($s);	
@@ -83,6 +90,7 @@ class Cliente extends Conexion
 	  $ultimo=$ultimo;
       return $ultimo;
 	}
+	
 	public function guardar()
 	{
      $sql="insert into cliente(nombre,apellidos,empresa,telefono,direccion) 
@@ -142,5 +150,4 @@ class Cliente extends Conexion
 		$sql="select *from cliente where id_cliente='$criterio'";
 		return parent::ejecutar($sql);
 	}
-}    
-?>
+}

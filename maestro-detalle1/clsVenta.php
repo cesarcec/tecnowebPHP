@@ -15,7 +15,7 @@ class Venta extends Conexion{
 		$this->id_cliente=0;
 	}
 	
-	//propiedades de acceso
+	//propiedades de acceso ID
 	public function setIdVenta($valor){
 		$this->id_venta=$valor;
 	}
@@ -24,6 +24,7 @@ class Venta extends Conexion{
 		return $this->id_venta;
 	}
 
+	//propiedades de acceso fecha
 	public function setFecha($valor){
 		$this->fecha=$valor;
 	}
@@ -31,6 +32,7 @@ class Venta extends Conexion{
 		return $this->fecha;
 	}
 
+	//propiedades de acceso ciente
 	public function setIdCliente($valor){
 		$this->id_cliente=$valor;
 	}
@@ -38,6 +40,7 @@ class Venta extends Conexion{
 		return $this->id_cliente;
 	}
 
+	//METODOS
 	public function ultimo_codigo()	{
 	  $s="select max(id_venta) as maximo from venta";	  
 	  $reg = parent::ejecutar($s);	
@@ -89,5 +92,4 @@ class Venta extends Conexion{
 	 $sql="select c.id_cliente, c.nombre, c.apellidos, v.id_venta, v.fecha from cliente c, venta v where c.id_cliente=v.id_cliente and (c.nombre like '%$criterio%' or c.apellidos like '%$criterio%')";
 		return parent::ejecutar($sql);	
 	}					
-}    
-?>
+}
